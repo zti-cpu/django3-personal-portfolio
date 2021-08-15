@@ -1,0 +1,51 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+<div class="text-center">
+<h1>Портфолио</h1>
+</div>
+{% load static %}
+<div class="text-center img-rounded">
+<img src="{% static 'portfolio/photo.jpg' %}" alt="My image" class="rounded">
+</div>
+
+<div class="text-center">
+<div class="card border-dark mb-3 text-center" style="margin-right: 13rem; margin-left: 13rem; margin-top: 1rem">
+  <div class="card-body text-dark">
+    <h5 class="card-title">Сергей</h5>
+    <p class="card-text">Да это я, главнокомандущий одной из планет в солнечной системы 😊</p>
+  </div>
+</div>
+</div>
+
+<h2 class="display-4 alert alert-primary otstup">Проекты</h2>
+
+<div class="jumbotron">
+<hr width="90%" style="margin-left: 1%">
+</div>
+<div class="row">
+{% for project in projects %}
+    <div class="col-lg-4 col-md-6" style="margin-left: 1%">
+    {% if project.url %}
+    <a href="{{ project.url }}">
+      <img src="{{ project.image.url }}" class="img-fluid mb-2">
+    </a>
+    {% else %}
+
+    <img src="{{ project.image.url }}" class="img-fluid mb-2"  width="150" height="400">
+    {% endif %}
+    <h3>{{ project.title }}</h3>
+    <p>{{ project.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+<!--
+{% for project in projects %}
+<h2>{{project.title}}</h2>
+<p>{{project.description}}</p>
+<img src="{{project.image.url}}">
+{% if project.url %}
+<br><a href="{{project.url}}">Link</a>
+{% endif %}
+{% endfor %}
+-->
+{% endblock%}

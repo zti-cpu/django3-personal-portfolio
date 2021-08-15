@@ -1,0 +1,19 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+<h2 class="text-center">Блог бэкенд которого был написан на dajngo уже имеет {{ blogs.count }} поста</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+{% for blog in blogs %}
+    <div class="col">
+     <div class="card h-100">
+        <div class="card-body">
+                <div class="card text-dark bg-light mb-2">
+                    <div class="card-header"><a href="{% url 'blog:detail' blog.id %}">{{blog.title}}</a></div> <!-- 'detail' перенаправляе на urls -->
+                    <h5 class="card-title">{{blog.date|date:'M d Y'|upper}}</h5>
+                    <p class="card-text ">{{blog.description|striptags|truncatechars:100}}</p>
+                </div>
+        </div>
+     </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
